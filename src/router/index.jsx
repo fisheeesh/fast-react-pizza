@@ -1,50 +1,53 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from '../ui/Home'
-import Menu, { loader as menuLoader } from '@/features/menu/Menu'
-import Cart from '../features/cart/Cart'
-import Order, { loader as orderLoader } from '../features/order/Order'
-import CreateOrder, { action as createOrderAction } from '../features/order/CreateOrder'
-import AppLayout from '../ui/AppLayout'
-import Error from '../ui/Error'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "../ui/Home";
+import Menu, { loader as menuLoader } from "@/features/menu/Menu";
+import Cart from "../features/cart/Cart";
+import Order, { loader as orderLoader } from "../features/order/Order";
+import CreateOrder, { action as createOrderAction } from "../features/order/CreateOrder";
+import AppLayout from "../ui/AppLayout";
+import Error from "../ui/Error";
+import { Suspense } from "react";
+import Loader from "../ui/Loader";
 
 export default function Router() {
     const router = createBrowserRouter([
         {
-            path: '/',
+            path: "/",
             element: <AppLayout />,
             errorElement: <Error />,
             children: [
                 {
                     index: true,
-                    path: '/',
-                    element: <Home />
+                    element: <Home />,
                 },
                 {
-                    path: '/menu',
+                    path: "/menu",
                     element: <Menu />,
                     loader: menuLoader,
                     errorElement: <Error />,
                 },
                 {
-                    path: '/cart',
-                    element: <Cart />
+                    path: "/cart",
+                    element: <Cart />,
                 },
                 {
-                    path: '/order/new',
+                    path: "/order/new",
                     element: <CreateOrder />,
-                    action: createOrderAction
+                    action: createOrderAction,
                 },
                 {
-                    path: '/order/:orderId',
+                    path: "/order/:orderId",
                     element: <Order />,
                     loader: orderLoader,
                     errorElement: <Error />,
-                }
-            ]
-        }
-    ])
+                },
+            ],
+        },
+    ]);
 
     return (
-        <RouterProvider router={router} />
-    )
+        <Suspense fallback={<Loader />}>
+            <RouterProvider router={router} />
+        </Suspense>
+    );
 }
