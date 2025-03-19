@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { createSelector } from "reselect"
 
 const initialState = {
     // cart: [
@@ -48,6 +49,15 @@ export default cartSlice.reducer
 //? This is redux selector function. The standards for these function to start the name wiht 'get'
 export const getCart = state => state.cart.cart
 
-export const getTotalCartQuantity = (state) => state.cart.cart.reduce((total, item) => total + item.quantity, 0)
+// export const getTotalCartQuantity = (state) => state.cart.cart.reduce((total, item) => total + item.quantity, 0)
 
-export const getTotalCartPrice = (state) => state.cart.cart.reduce((total, item) => total + item.totalPrice, 0)
+// export const getTotalCartPrice = (state) => state.cart.cart.reduce((total, item) => total + item.totalPrice, 0)
+export const getTotalCartQuantity = createSelector(
+    getCart,
+    cart => cart.reduce((total, item) => total + item.quantity, 0)
+)
+
+export const getTotalCartPrice = createSelector(
+    getCart,
+    cart => cart.reduce((total, item) => total + item.totalPrice, 0)
+)
