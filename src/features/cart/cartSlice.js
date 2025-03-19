@@ -44,3 +44,8 @@ const cartSlice = createSlice({
 export const { addItem, deleteItem, increaseItemQuantity, decreaseItemQuantity, clearCart } = cartSlice.actions
 
 export default cartSlice.reducer
+
+//? This is redux selector function. The standards for these function to start the name wiht 'get'
+export const getTotalCartQuantity = (state) => state.cart.cart.reduce((total, item) => total + item.quantity, 0)
+
+export const getTotalCartPrice = (state) => state.cart.cart.reduce((total, item) => total + item.totalPrice, 0)
