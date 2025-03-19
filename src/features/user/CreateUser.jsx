@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import Button from '../../ui/Button';
+import { useDispatch } from 'react-redux';
 
 function CreateUser() {
   const [username, setUsername] = useState('');
+  const dispatch = useDispatch()
 
   function handleSubmit(e) {
     e.preventDefault();
