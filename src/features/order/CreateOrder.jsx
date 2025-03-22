@@ -113,6 +113,8 @@ export const action = async ({ request }) => {
 
   const newOrder = await createOrder(order)
 
+  store.dispatch(clearCart())
+
   return redirect(`/order/${newOrder.id}`)
 }
 

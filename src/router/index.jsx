@@ -8,6 +8,7 @@ import AppLayout from "../ui/AppLayout";
 import Error from "../ui/Error";
 import { Suspense } from "react";
 import Loader from "../ui/Loader";
+import { action as updateOrderAction } from "../features/order/UpdateOrder";
 
 export default function Router() {
     const router = createBrowserRouter([
@@ -39,6 +40,7 @@ export default function Router() {
                     path: "/order/:orderId",
                     element: <Order />,
                     loader: orderLoader,
+                    action: updateOrderAction,
                     errorElement: <Error />,
                 },
             ],
