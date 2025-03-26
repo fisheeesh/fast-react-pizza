@@ -25,7 +25,6 @@ export default function Router() {
                     path: "/menu",
                     element: <Menu />,
                     loader: menuLoader,
-                    errorElement: <Error />,
                 },
                 {
                     path: "/cart",
@@ -41,7 +40,6 @@ export default function Router() {
                     element: <Order />,
                     loader: orderLoader,
                     action: updateOrderAction,
-                    errorElement: <Error />,
                 },
             ],
         },

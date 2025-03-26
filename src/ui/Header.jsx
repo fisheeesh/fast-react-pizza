@@ -11,7 +11,7 @@ export default function Header() {
 
     return (
         <header className="flex items-center justify-between bg-yellow-400 px-4 py-3 uppercase border-b border-stone-300 sm:px-6">
-            <Link to={'/'} className="tracking-widest ">Fast React Pizza Co.</Link>
+            <Link to={'/'} className="tracking-widest text-sm sm:text-base">Fast React Pizza Co.</Link>
             <SearchBar />
             <div className="flex items-center gap-2">
                 <Username />

@@ -12,6 +12,9 @@ import { useFetcher, useLoaderData } from "react-router-dom";
 import OrderItem from '../order/OrderItem'
 import { useEffect } from "react";
 import UpdateOrder from "./UpdateOrder";
+import delivery from '../../assets/delivery.lottie'
+import arrived from '../../assets/arrived.lottie'
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 function Order() {
   const order = useLoaderData()
@@ -35,7 +38,15 @@ function Order() {
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
 
   return (
-    <div className="px-4 py-6 space-y-8">
+    <div className="px-4 py-6 space-y-6">
+      <div className="flex items-center justify-center w-full">
+        <DotLottieReact
+          src={deliveryIn >= 0 ? delivery : arrived}
+          loop
+          autoplay
+          style={{ width: '500px', height: '200px' }}
+        />
+      </div>
       <div className="flex justify-between items-center flex-wrap gap-2">
         <h2 className="text-xl font-semibold">Order #{id} status</h2>
 
